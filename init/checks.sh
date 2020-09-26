@@ -1,8 +1,8 @@
 #!/bin/bash
 #
-# Copyright (C) 2020 by UsergeTeam@Github, < https://github.com/UsergeTeam >.
+# Copyright (C) 2020 by UsergeTeam@Github, < https://github.com/xmtscfTeam >.
 #
-# This file is part of < https://github.com/UsergeTeam/Userge > project,
+# This file is part of < https://github.com/xmtscfTeam/Userge > project,
 # and is released under the "GNU v3.0 License Agreement".
 # Please see < https://github.com/uaudith/Userge/blob/master/LICENSE >
 #
@@ -50,7 +50,7 @@ _checkDefaultVars() {
         [PREFERRED_LANGUAGE]="en"
         [DOWN_PATH]="downloads"
         [UPSTREAM_REMOTE]="upstream"
-        [UPSTREAM_REPO]="https://github.com/UsergeTeam/Userge"
+        [UPSTREAM_REPO]="https://github.com/xmtscfTeam/Userge"
         [LOAD_UNOFFICIAL_PLUGINS]=false
         [G_DRIVE_IS_TD]=true
         [CMD_TRIGGER]="."
@@ -158,7 +158,7 @@ _checkUnoffPlugins() {
     if test $LOAD_UNOFFICIAL_PLUGINS = true; then
         editLastMessage "\tLoading UnOfficial Plugins ..."
         replyLastMessage "\t\tClonning ..."
-        gitClone --depth=1 https://github.com/UsergeTeam/Userge-Plugins.git
+        gitClone --depth=1 https://github.com/xmtscfTeam/Userge-Plugins.git
         editLastMessage "\t\tUpgrading PIP ..."
         upgradePip
         editLastMessage "\t\tInstalling Requirements ..."

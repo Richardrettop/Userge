@@ -8,8 +8,8 @@
         "pluggable",
         "userbot"
     ],
-    "repository": "https://github.com/UsergeTeam/Userge",
-    "website": "https://github.com/Userge",
+    "repository": "https://github.com/xmtscf/Userge",
+    "website": "https://github.com/xmtscf",
     "success_url": "https://t.me/theUserge",
     "env": {
         "API_ID": {"description": "Get this value from https://my.telegram.org"},

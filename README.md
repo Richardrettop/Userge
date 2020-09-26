@@ -1,26 +1,26 @@
 <p align="center">
-    <a href="https://github.com/UsergeTeam/Userge">
+    <a href="https://github.com/xmtscfTeam/Userge">
         <img src="resources/userge.png" alt="Userge">
     </a>
     <br>
     <b>Pluggable Telegram UserBot</b>
     <br>
-    <a href="https://github.com/UsergeTeam/Userge#inspiration-">Inspiration</a>
+    <a href="https://github.com/xmtscfTeam/Userge#inspiration-">Inspiration</a>
     &nbsp•&nbsp
-    <a href="https://github.com/UsergeTeam/Userge#features-">Features</a>
+    <a href="https://github.com/xmtscfTeam/Userge#features-">Features</a>
     &nbsp•&nbsp
-    <a href="https://github.com/UsergeTeam/Userge#example-plugin-">Example</a>
+    <a href="https://github.com/xmtscfTeam/Userge#example-plugin-">Example</a>
     &nbsp•&nbsp
-    <a href="https://github.com/UsergeTeam/Userge#requirements-">Requirements</a>
+    <a href="https://github.com/xmtscfTeam/Userge#requirements-">Requirements</a>
     &nbsp•&nbsp
-    <a href="https://github.com/UsergeTeam/Userge#project-credits-">Project Credits</a>
+    <a href="https://github.com/xmtscfTeam/Userge#project-credits-">Project Credits</a>
     &nbsp•&nbsp
-    <a href="https://github.com/UsergeTeam/Userge#copyright--license-">Copyright & License</a>
+    <a href="https://github.com/xmtscfTeam/Userge#copyright--license-">Copyright & License</a>
 </p>
 
 # Userge 🔥
 
-[![Build Status](https://travis-ci.com/UsergeTeam/Userge.svg?branch=dev)](https://travis-ci.com/UsergeTeam/Userge) ![Python Version](https://img.shields.io/badge/python-3.8-lightgrey) ![Release](https://img.shields.io/github/v/release/UsergeTeam/Userge) ![Stars](https://img.shields.io/github/stars/UsergeTeam/Userge) ![Forks](https://img.shields.io/github/forks/UsergeTeam/Userge) ![Issues Open](https://img.shields.io/github/issues/UsergeTeam/Userge) ![Issues Closed](https://img.shields.io/github/issues-closed/UsergeTeam/Userge) ![PR Open](https://img.shields.io/github/issues-pr/UsergeTeam/Userge) ![PR Closed](https://img.shields.io/github/issues-pr-closed/UsergeTeam/Userge) ![Contributors](https://img.shields.io/github/contributors/UsergeTeam/Userge) ![Repo Size](https://img.shields.io/github/repo-size/UsergeTeam/Userge) ![License](https://img.shields.io/github/license/UsergeTeam/Userge) ![Commit Activity](https://img.shields.io/github/commit-activity/m/UsergeTeam/Userge) [![Plugins Repo!](https://img.shields.io/badge/Plugins%20Repo-!-orange)](https://github.com/UsergeTeam/Userge-Plugins) [![Join Channel!](https://img.shields.io/badge/Join%20Channel-!-red)](https://t.me/theUserge) [![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/UsergeTeam/Userge/?ref=repository-badge)
+[![Build Status](https://travis-ci.com/UsergeTeam/Userge.svg?branch=dev)](https://travis-ci.com/UsergeTeam/Userge) ![Python Version](https://img.shields.io/badge/python-3.8-lightgrey) ![Release](https://img.shields.io/github/v/release/UsergeTeam/Userge) ![Stars](https://img.shields.io/github/stars/UsergeTeam/Userge) ![Forks](https://img.shields.io/github/forks/UsergeTeam/Userge) ![Issues Open](https://img.shields.io/github/issues/UsergeTeam/Userge) ![Issues Closed](https://img.shields.io/github/issues-closed/UsergeTeam/Userge) ![PR Open](https://img.shields.io/github/issues-pr/UsergeTeam/Userge) ![PR Closed](https://img.shields.io/github/issues-pr-closed/UsergeTeam/Userge) ![Contributors](https://img.shields.io/github/contributors/UsergeTeam/Userge) ![Repo Size](https://img.shields.io/github/repo-size/UsergeTeam/Userge) ![License](https://img.shields.io/github/license/UsergeTeam/Userge) ![Commit Activity](https://img.shields.io/github/commit-activity/m/UsergeTeam/Userge) [![Plugins Repo!](https://img.shields.io/badge/Plugins%20Repo-!-orange)](https://github.com/xmtscfTeam/Userge-Plugins) [![Join Channel!](https://img.shields.io/badge/Join%20Channel-!-red)](https://t.me/theUserge) [![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/UsergeTeam/Userge/?ref=repository-badge)
 
 > **Userge** is a Powerful , _Pluggable_ Telegram UserBot written in _Python_ using [Pyrogram](https://github.com/pyrogram/pyrogram).
 
@@ -85,17 +85,17 @@ async def testing(message: Message):
 * **BOT** mode `(using bot account)`
 * **DUAL** mode `(using both user and bot account)`
 
-  > further **read** [config.env.sample](https://github.com/UsergeTeam/Userge/blob/alpha/config.env.sample)
+  > further **read** [config.env.sample](https://github.com/xmtscfTeam/Userge/blob/alpha/config.env.sample)
 
 ## How To Deploy 👷
 
 * **[HEROKU](https://www.heroku.com/) Method** 🚀
 
-  > First click [**this**](https://heroku.com/deploy?template=https://github.com/UsergeTeam/Userge/tree/master)
+  > First click [**this**](https://heroku.com/deploy?template=https://github.com/xmtscfTeam/Userge/tree/master)
 
   > Fill `API_ID`, `API_HASH`, `DATABASE_URL` and `LOG_CHANNEL_ID` (**required**)
 
-  > Choose your [**MODE**](https://github.com/UsergeTeam/Userge#userge-modes-)
+  > Choose your [**MODE**](https://github.com/xmtscfTeam/Userge#userge-modes-)
 
   > Then fill other **non-required** vars as relevent to your **MODE**
 
@@ -107,7 +107,7 @@ async def testing(message: Message):
 
   1. Install Docker ( [Guide](https://docs.docker.com/engine/install/ubuntu/) )
   2. Clone the repo
-      `git clone https://github.com/UsergeTeam/Userge.git`
+      `git clone https://github.com/xmtscfTeam/Userge.git`
   3. `cd Userge`
   4. Create the docker image
       `docker build -t userge .`
@@ -122,7 +122,7 @@ async def testing(message: Message):
 
   ```bash
   # clone the repo
-  git clone https://github.com/UsergeTeam/Userge.git
+  git clone https://github.com/xmtscfTeam/Userge.git
   cd Userge
 
   # create virtualenv
@@ -154,7 +154,7 @@ async def testing(message: Message):
 
 ### Project Credits 💆‍♂️
 
-* [Specially to these projects](https://github.com/UsergeTeam/Userge#inspiration-) 🥰
+* [Specially to these projects](https://github.com/xmtscfTeam/Userge#inspiration-) 🥰
 * [@uaudIth](https://t.me/uaudIth)
 * [@K_E_N_W_A_Y](https://t.me/K_E_N_W_A_Y)
 * [@nawwasl](https://t.me/nawwasl)
@@ -164,5 +164,5 @@ async def testing(message: Message):
 
 ### Copyright & License 👮
 
-* Copyright (C) 2020 by [UsergeTeam](https://github.com/UsergeTeam) ❤️️
-* Licensed under the terms of the [GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007](https://github.com/UsergeTeam/Userge/blob/master/LICENSE)
+* Copyright (C) 2020 by [UsergeTeam](https://github.com/xmtscfTeam) ❤️️
+* Licensed under the terms of the [GNU GENERAL PUBLIC LICENSE Version 3, 29 June 2007](https://github.com/xmtscfTeam/Userge/blob/master/LICENSE)
