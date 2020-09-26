@@ -39,8 +39,8 @@ async def _init() -> None:
 
 @userge.on_cmd("afk", about={
     'header': "Set to AFK mode",
-    'description': "Sets your status as AFK. Responds to anyone who tags/PM's.\n"
-                   "you telling you are AFK. Switches off AFK when you type back anything.",
+    'description': "Define seu status como AFK. Responde a qualquer pessoa que marca/PM's.\n"
+                   "você dizendo que está AFK. Desliga o AFK quando você digita alguma coisa.",
     'usage': "{tr}afk or {tr}afk [reason]"}, allow_channels=False)
 async def active_afk(message: Message) -> None:
     """ turn on or off afk mode """
@@ -49,8 +49,8 @@ async def active_afk(message: Message) -> None:
     TIME = time.time()
     REASON = message.input_str
     await asyncio.gather(
-        CHANNEL.log(f"You went AFK! : `{REASON}`"),
-        message.edit("`You went AFK!`", del_in=1),
+        CHANNEL.log(f"Você ficou AFK! : `{REASON}`"),
+        message.edit("`Você ficou AFK!`", del_in=1),
         AFK_COLLECTION.drop(),
         SAVED_SETTINGS.update_one(
             {'_id': 'AFK'}, {"$set": {'on': True, 'data': REASON, 'time': TIME}}, upsert=True))
@@ -115,7 +115,7 @@ async def handle_afk_outgoing(message: Message) -> None:
     global IS_AFK  # pylint: disable=global-statement
     IS_AFK = False
     afk_time = time_formatter(round(time.time() - TIME))
-    replied: Message = await message.reply("`I'm no longer AFK!`", log=__name__)
+    replied: Message = await message.reply("`Eu não estou mais AFK!`", log=__name__)
     coro_list = []
     if USERS:
         p_msg = ''
@@ -130,14 +130,14 @@ async def handle_afk_outgoing(message: Message) -> None:
                 g_msg += f"👥 {men} ✉️ **{gcount}**\n"
                 g_count += gcount
         coro_list.append(replied.edit(
-            f"`You recieved {p_count + g_count} messages while you were away. "
+            f"`Você recebeu {p_count + g_count} mensagens enquanto você estava fora. "
             f"Check log for more details.`\n\n**AFK time** : __{afk_time}__", del_in=3))
-        out_str = f"You've recieved **{p_count + g_count}** messages " + \
-            f"from **{len(USERS)}** users while you were away!\n\n**AFK time** : __{afk_time}__\n"
+        out_str = f"Voce recebeu **{p_count + g_count}** mensagens " + \
+            f"de **{len(USERS)}** usuários enquanto você estava fora!\n\n**AFK time** : __{afk_time}__\n"
         if p_count:
-            out_str += f"\n**{p_count} Private Messages:**\n\n{p_msg}"
+            out_str += f"\n**{p_count} Mensagens privadas:**\n\n{p_msg}"
         if g_count:
-            out_str += f"\n**{g_count} Group Messages:**\n\n{g_msg}"
+            out_str += f"\n**{g_count} Mensagens de Grupo:**\n\n{g_msg}"
         coro_list.append(CHANNEL.log(out_str))
         USERS.clear()
     else:
@@ -157,25 +157,25 @@ AFK_REASONS = (
     "Você sentiu minha falta, da próxima vez mire melhor.",
     "Volto em alguns minutos e se não ...,\nespere mais.",
     "Não estou aqui agora, então provavelmente estou em outro lugar.",
-    "Roses are red,\nViolets are blue,\nLeave me a message,\nAnd I'll get back to you.",
-    "Sometimes the best things in life are worth waiting for…\nI'll be right back.",
-    "I'll be right back,\nbut if I'm not right back,\nI'll be back later.",
-    "If you haven't figured it out already,\nI'm not here.",
-    "I'm away over 7 seas and 7 countries,\n7 waters and 7 continents,\n7 mountains and 7 hills,\
-7 plains and 7 mounds,\n7 pools and 7 lakes,\n7 springs and 7 meadows,\
-7 cities and 7 neighborhoods,\n7 blocks and 7 houses...\
-    Where not even your messages can reach me!",
-    "I'm away from the keyboard at the moment, but if you'll scream loud enough at your screen,\
-    I might just hear you.",
-    "I went that way\n>>>>>",
-    "I went this way\n<<<<<",
-    "Please leave a message and make me feel even more important than I already am.",
-    "If I were here,\nI'd tell you where I am.\n\nBut I'm not,\nso ask me when I return...",
-    "I am away!\nI don't know when I'll be back!\nHopefully a few minutes from now!",
-    "I'm not available right now so please leave your name, number, \
-    and address and I will stalk you later. :P",
-    "Sorry, I'm not here right now.\nFeel free to talk to my userbot as long as you like.\
-I'll get back to you later.",
-    "I bet you were expecting an away message!",
-    "Life is so short, there are so many things to do...\nI'm away doing one of them..",
-    "I am not here right now...\nbut if I was...\n\nwouldn't that be awesome?")
+    "Rosas são vermelhas,\nVioletas são azuis,\nMe deixe uma mensagem,\nE eu voltarei para você.",
+    "Às vezes, vale a pena esperar pelas melhores coisas da vida…\neu volto já.",
+    "Eu volto já,\nmas se eu não voltar logo,\nvoltarei mais tarde.",
+    "Se você ainda não descobriu,\neu não estou aqui.",
+    "Estou em 7 mares e 7 países,\n7 águas e 7 continentes,\n7 montanhas e 7 colinas,\
+7 planícies e 7 montes,\n7 piscinas e 7 lagos,\n7 nascentes e 7 prados,\
+7 cidades e 7 bairros,\n7 blocos e 7 casas...\
+    Onde nem mesmo suas mensagens podem me alcançar!",
+    "Estou longe do teclado no momento, mas se você gritar alto o suficiente na tela,\
+    Eu posso apenas ouvir você.",
+    "Eu fui por ali\n>>>>>",
+    "Eu fui por aqui\n<<<<<",
+    "Por favor, deixe uma mensagem e me faça sentir ainda mais importante do que já sou.",
+    "Se eu estivesse aqui,\nEu te diria onde estou.\n\nMas eu não estou,\nentão me pergunte quando eu voltar...",
+    "Eu estou longe!\nNão sei quando voltarei!\nEspero que daqui a alguns minutos!",
+    "Não estou disponível no momento, por favor, deixe seu nome, número, \
+    e endereço e eu irei persegui-lo mais tarde. :P",
+    "Desculpe, eu não estou aqui agora.\nSinta-se à vontade para falar com meu userbot pelo tempo que quiser.\
+Eu voltarei para você mais tarde.",
+    "Aposto que você estava esperando uma mensagem de fora!",
+    "A vida é tão curta, há tantas coisas para fazer...\nEstou fora fazendo um deles..",
+    "Eu não estou aqui agora...\nmas se eu fosse...\n\nisso não seria incrível?")
