@@ -1,8 +1,8 @@
 # pylint: disable=missing-module-docstring
 #
-# Copyright (C) 2020 by UsergeTeam@Github, < https://github.com/UsergeTeam >.
+# Copyright (C) 2020 by UsergeTeam@Github, < https://github.com/xmtscf >.
 #
-# This file is part of < https://github.com/UsergeTeam/Userge > project,
+# This file is part of < https://github.com/xmtscf/Userge > project,
 # and is released under the "GNU v3.0 License Agreement".
 # Please see < https://github.com/uaudith/Userge/blob/master/LICENSE >
 #
@@ -38,7 +38,7 @@ _EMOJI_PATTERN = re.compile(
 _BTN_URL_REGEX = re.compile(r"(\[([^\[]+?)\]\[buttonurl:(?:/{0,2})(.+?)(:same)?\])")
 
 
-# https://github.com/UsergeTeam/Userge-Plugins/blob/master/plugins/tweet.py
+# https://github.com/xmtscf/Userge-Plugins/blob/master/plugins/tweet.py
 def demojify(string: str) -> str:
     """ Remove emojis and other non-safe characters from string """
     return re.sub(_EMOJI_PATTERN, '', string)
@@ -79,7 +79,7 @@ def time_formatter(seconds: float) -> str:
     return tmp[:-2]
 
 
-# https://github.com/UsergeTeam/Userge-Plugins/blob/master/plugins/anilist.py
+# https://github.com/xmtscf/Userge-Plugins/blob/master/plugins/anilist.py
 def post_to_telegraph(a_title: str, content: str) -> str:
     """ Create a Telegram Post using HTML Content """
     post_client = TelegraphPoster(use_api=True)

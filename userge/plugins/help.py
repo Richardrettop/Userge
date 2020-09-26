@@ -1,8 +1,8 @@
 # pylint: disable=missing-module-docstring
 #
-# Copyright (C) 2020 by UsergeTeam@Github, < https://github.com/UsergeTeam >.
+# Copyright (C) 2020 by UsergeTeam@Github, < https://github.com/xmtscf >.
 #
-# This file is part of < https://github.com/UsergeTeam/Userge > project,
+# This file is part of < https://github.com/xmtscf/Userge > project,
 # and is released under the "GNU v3.0 License Agreement".
 # Please see < https://github.com/uaudith/Userge/blob/master/LICENSE >
 #
@@ -357,7 +357,7 @@ if Config.BOT_TOKEN and Config.OWNER_ID:
                 input_message_content=InputTextMessageContent(
                     "**Here's how to setup Userge** 😎"
                 ),
-                url="https://github.com/UsergeTeam/Userge",
+                url="https://github.com/xmtscf/Userge",
                 description="Setup Your Own",
                 thumb_url="https://imgur.com/download/Inyeb1S",
                 reply_markup=InlineKeyboardMarkup(
@@ -365,11 +365,11 @@ if Config.BOT_TOKEN and Config.OWNER_ID:
                         [
                             InlineKeyboardButton(
                                 "🧰 Userge Repo",
-                                url="https://github.com/UsergeTeam/Userge"),
+                                url="https://github.com/xmtscf/Userge"),
                             InlineKeyboardButton(
                                 "🖥 Deploy Userge",
                                 url=("https://heroku.com/deploy?template="
-                                     "https://github.com/UsergeTeam/Userge/tree/master"))
+                                     "https://github.com/xmtscf/Userge/tree/master"))
                         ]
                     ]
                 )
@@ -383,7 +383,7 @@ if Config.BOT_TOKEN and Config.OWNER_ID:
                     input_message_content=InputTextMessageContent(
                         "🖥 **Userge Main Menu** 🖥"
                     ),
-                    url="https://github.com/UsergeTeam/Userge",
+                    url="https://github.com/xmtscf/Userge",
                     description="Userge Main Menu",
                     thumb_url="https://imgur.com/download/Inyeb1S",
                     reply_markup=InlineKeyboardMarkup(main_menu_buttons())

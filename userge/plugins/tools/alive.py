@@ -1,6 +1,6 @@
-# Copyright (C) 2020 by UsergeTeam@Github, < https://github.com/UsergeTeam >.
+# Copyright (C) 2020 by UsergeTeam@Github, < https://github.com/xmtscf >.
 #
-# This file is part of < https://github.com/UsergeTeam/Userge > project,
+# This file is part of < https://github.com/xmtscf/Userge > project,
 # and is released under the "GNU v3.0 License Agreement".
 # Please see < https://github.com/uaudith/Userge/blob/master/LICENSE >
 #
@@ -37,11 +37,11 @@ async def alive(message: Message):
                            f"trying again... ERROR:: {set_err} ::")
             _set_data(True)
     markup = None
-    copy_ = "https://github.com/UsergeTeam/Userge/blob/master/LICENSE"
+    copy_ = "https://github.com/xmtscf/Userge/blob/master/LICENSE"
     output = f"""
-**⏱ uptime** : `{userge.uptime}`
-**💡 version** : `{get_version()}`
-**⚙️ mode** : `{_get_mode().upper()}`
+**⏱ Uptime** : `{userge.uptime}`
+**💡 Versão** : `{get_version()}`
+**⚙️ Modo** : `{_get_mode().upper()}`
 
 • **sudo**: `{_parse_arg(Config.SUDO_ENABLED)}`
 • **pm-guard**: `{_parse_arg(not Config.ALLOW_ALL_PMS)}`
@@ -60,7 +60,7 @@ async def alive(message: Message):
     else:
         markup = InlineKeyboardMarkup([
             [
-                InlineKeyboardButton(text="👥 UsergeTeam", url="https://github.com/UsergeTeam"),
+                InlineKeyboardButton(text="👥 UsergeTeam", url="https://github.com/xmtscf"),
                 InlineKeyboardButton(text="🧪 Repo", url=Config.UPSTREAM_REPO)
             ],
             [InlineKeyboardButton(text="🎖 GNU GPL v3.0", url=copy_)]
