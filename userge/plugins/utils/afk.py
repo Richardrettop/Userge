@@ -175,7 +175,7 @@ AFK_REASONS = (
     "Não estou disponível no momento, por favor, deixe seu nome, número, \
     e endereço e eu irei persegui-lo mais tarde. :P",
     "Desculpe, eu não estou aqui agora.\nSinta-se à vontade para falar com meu userbot pelo tempo que quiser.\
-Eu voltarei para você mais tarde.",
+ Eu voltarei para você mais tarde.",
     "Aposto que você estava esperando uma mensagem de fora!",
     "A vida é tão curta, há tantas coisas para fazer...\nEstou fora fazendo um deles..",
     "Eu não estou aqui agora...\nmas se eu fosse...\n\nisso não seria incrível?")
