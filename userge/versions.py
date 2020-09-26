@@ -18,4 +18,4 @@ __micro__ = 1
 
 __python_version__ = f"{version_info[0]}.{version_info[1]}.{version_info[2]}"
 __license__ = "[GNU GPL v3.0](https://github.com/xmtscf/Userge/blob/master/LICENSE)"
-__copyright__ = "[UsergeTeam](https://github.com/xmtscf)"
+__copyright__ = "[xmtscf](https://github.com/xmtscf)"
