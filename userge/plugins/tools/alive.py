@@ -37,7 +37,7 @@ async def alive(message: Message):
                            f"tentando novamente... ERROR:: {set_err} ::")
             _set_data(True)
     markup = None
-    copy_ = "https://github.com/xmtscf/Userge/blob/master/LICENSE"
+
     output = f"""
 **⏱ Uptime** : `{userge.uptime}`
 **💡 Versão** : `{get_version()}`
@@ -58,6 +58,7 @@ async def alive(message: Message):
 🎖 **{versions.__license__}** | 👥 **{versions.__copyright__}** | 🧪 **[Repo]({Config.UPSTREAM_REPO})**
 """
     else:
+        copy_ = "https://github.com/UsergeTeam/Userge/blob/master/LICENSE"
         markup = InlineKeyboardMarkup([
             [
                 InlineKeyboardButton(text="👥 xmtscf", url="https://github.com/xmtscf"),

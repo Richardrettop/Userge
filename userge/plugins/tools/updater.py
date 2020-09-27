@@ -37,7 +37,6 @@ async def check_update(message: Message):
     pull_from_repo = False
     push_to_heroku = False
     branch = "master"
-    dev_branch = "alpha"
     if "pull" in flags:
         pull_from_repo = True
         flags.remove("pull")
@@ -49,6 +48,7 @@ async def check_update(message: Message):
         flags.remove("push")
     if len(flags) == 1:
         branch = flags[0]
+        dev_branch = "alpha"
         if branch == dev_branch:
             await message.err('Não é possivel atualizar para instável [alpha] branch. '
                               'Por favor, use outra branch ao invés !')
