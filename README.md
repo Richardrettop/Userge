@@ -20,7 +20,7 @@
 
 # Userge 🔥
 
-[![Build Status](https://travis-ci.com/UsergeTeam/Userge.svg?branch=dev)](https://travis-ci.com/UsergeTeam/Userge) ![Python Version](https://img.shields.io/badge/python-3.8-lightgrey) ![Release](https://img.shields.io/github/v/release/UsergeTeam/Userge) ![Stars](https://img.shields.io/github/stars/UsergeTeam/Userge) ![Forks](https://img.shields.io/github/forks/UsergeTeam/Userge) ![Issues Open](https://img.shields.io/github/issues/UsergeTeam/Userge) ![Issues Closed](https://img.shields.io/github/issues-closed/UsergeTeam/Userge) ![PR Open](https://img.shields.io/github/issues-pr/UsergeTeam/Userge) ![PR Closed](https://img.shields.io/github/issues-pr-closed/UsergeTeam/Userge) ![Contributors](https://img.shields.io/github/contributors/UsergeTeam/Userge) ![Repo Size](https://img.shields.io/github/repo-size/UsergeTeam/Userge) ![License](https://img.shields.io/github/license/UsergeTeam/Userge) ![Commit Activity](https://img.shields.io/github/commit-activity/m/UsergeTeam/Userge) [![Plugins Repo!](https://img.shields.io/badge/Plugins%20Repo-!-orange)](https://github.com/xmtscf/Userge-Plugins) [![Join Channel!](https://img.shields.io/badge/Join%20Channel-!-red)](https://t.me/theUserge) [![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/UsergeTeam/Userge/?ref=repository-badge)
+[![Build Status](https://travis-ci.com/xmtscf/userge.svg?branch=dev)](https://travis-ci.com/xmtscf/userge) ![Python Version](https://img.shields.io/badge/python-3.8-lightgrey) ![Release](https://img.shields.io/github/v/release/xmtscf/userge) ![Stars](https://img.shields.io/github/stars/xmtscf/userge) ![Forks](https://img.shields.io/github/forks/xmtscf/userge) ![Issues Open](https://img.shields.io/github/issues/xmtscf/userge) ![Issues Closed](https://img.shields.io/github/issues-closed/xmtscf/userge) ![PR Open](https://img.shields.io/github/issues-pr/xmtscf/userge) ![PR Closed](https://img.shields.io/github/issues-pr-closed/xmtscf/userge) ![Contributors](https://img.shields.io/github/contributors/xmtscf/userge) ![Repo Size](https://img.shields.io/github/repo-size/xmtscf/userge) ![License](https://img.shields.io/github/license/xmtscf/userge) ![Commit Activity](https://img.shields.io/github/commit-activity/m/xmtscf/userge) [![Plugins Repo!](https://img.shields.io/badge/Plugins%20Repo-!-orange)](https://github.com/xmtscf/Userge-Plugins) [![Join Channel!](https://img.shields.io/badge/Join%20Channel-!-red)](https://t.me/theUserge) [![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/xmtscf/userge/?ref=repository-badge)
 
 > **Userge** is a Powerful , _Pluggable_ Telegram UserBot written in _Python_ using [Pyrogram](https://github.com/pyrogram/pyrogram).
 
@@ -121,7 +121,7 @@ async def test_filter(message: Message):
   4. Create the docker image
       `docker build -t userge .`
   5. `cd ..`
-  6. `wget https://raw.githubusercontent.com/UsergeTeam/Userge/alpha/config.env.sample -O config.env`
+  6. `wget https://raw.githubusercontent.com/xmtscf/userge/alpha/config.env.sample -O config.env`
   7. Edit the file with your text editor
       `vi config.env`
   8. Finally run the container
