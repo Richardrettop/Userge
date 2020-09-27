@@ -22,14 +22,14 @@ from pyrogram.errors.exceptions.bad_request_400 import MessageNotModified, Messa
 from userge import userge, Message, Config, get_collection
 
 _CATEGORY = {
-    'admin': '👨‍✈️',
-    'fun': '🎨',
-    'misc': '⚙️',
-    'tools': '🧰',
-    'utils': '🗂',
-    'unofficial': '🃏',
-    'temp': '♻️',
-    'plugins': '💎'
+    'Admin': '👨‍✈️',
+    'Diversão': '🎨',
+    'Misc': '⚙️',
+    'Ferramentas': '🧰',
+    'Utilitarios': '🗂',
+    'Não oficiais': '🃏',
+    'Temporarios': '♻️',
+    'Plugins': '💎'
 }
 SAVED_SETTINGS = get_collection("CONFIGS")
 PRVT_MSGS = {}
