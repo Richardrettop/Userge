@@ -11,7 +11,7 @@ from userge import userge, Message
 
 
 @userge.on_cmd(
-    "ping", about={'header': "check how long it takes to ping your userbot"})
+    "ping", about={'header': "verifique quanto tempo leva para executar ping no seu userbot"})
 async def pingme(message: Message):
     start = datetime.now()
     await message.edit('`Pong!`')
