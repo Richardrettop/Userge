@@ -26,18 +26,18 @@ _LOGO_ID, _LOGO_REF = None, None
 
 
 @userge.on_cmd("alive", about={
-    'header': "This command is just for fun"}, allow_channels=False)
+    'header': "Este comando é apenas para diversão"}, allow_channels=False)
 async def alive(message: Message):
 
     if not (_CHAT and _MSG_ID):
         try:
             _set_data()
         except Exception as set_err:
-            _LOG.exception("There was some problem while setting Media Data. "
-                           f"trying again... ERROR:: {set_err} ::")
+            _LOG.exception("Ocorreu um problema ao definir os dados de mídia. "
+                           f"tentando novamente... ERROR:: {set_err} ::")
             _set_data(True)
     markup = None
-    copy_ = "https://github.com/xmtscf/Userge/blob/master/LICENSE"
+
     output = f"""
 **⏱ Uptime** : `{userge.uptime}`
 **💡 Versão** : `{get_version()}`
@@ -49,7 +49,7 @@ async def alive(message: Message):
     if Config.HEROKU_APP:
         output += f"\n• **dyno-saver**: `{_parse_arg(Config.RUN_DYNO_SAVER)}`"
     output += f"""
-• **unofficial**: `{_parse_arg(Config.LOAD_UNOFFICIAL_PLUGINS)}`
+• **não oficial**: `{_parse_arg(Config.LOAD_UNOFFICIAL_PLUGINS)}`
 
     **__Python__**: `{versions.__python_version__}`
     **__Pyrogram__**: `{versions.__pyro_version__}`"""
@@ -58,6 +58,7 @@ async def alive(message: Message):
 🎖 **{versions.__license__}** | 👥 **{versions.__copyright__}** | 🧪 **[Repo]({Config.UPSTREAM_REPO})**
 """
     else:
+        copy_ = "https://github.com/xmtscf/Userge/blob/master/LICENSE"
         markup = InlineKeyboardMarkup([
             [
                 InlineKeyboardButton(text="👥 xmtscf", url="https://github.com/xmtscf"),
@@ -84,7 +85,7 @@ def _get_mode() -> str:
 
 
 def _parse_arg(arg: bool) -> str:
-    return "enabled" if arg else "disabled"
+    return "ativado" if arg else "desativado"
 
 
 async def _send_alive(message: Message,
@@ -132,7 +133,7 @@ def _set_data(errored: bool = False) -> None:
 
     pattern = r"^(http(?:s?):\/\/)?(www\.)?(t.me)(\/c\/(\d+)|:?\/(\w+))?\/(\d+)$"
     if Config.ALIVE_MEDIA and not errored:
-        if Config.ALIVE_MEDIA.lower().strip() == "nothing":
+        if Config.ALIVE_MEDIA.lower().strip() == "nada":
             _CHAT = "text_format"
             _MSG_ID = "text_format"
             return

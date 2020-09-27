@@ -53,7 +53,7 @@ async def rename_(message: Message):
             progress_args=(message, "trying to download")
         )
         if message.process_is_canceled:
-            await message.edit("`Process Canceled!`", del_in=5)
+            await message.edit("`Processo Cancelado!`", del_in=5)
         else:
             await message.delete()
             dl_loc = os.path.join(Config.DOWN_PATH, os.path.basename(dl_loc))
@@ -78,7 +78,7 @@ async def convert_(message: Message):
             progress_args=(message, "trying to download")
         )
         if message.process_is_canceled:
-            await message.edit("`Process Canceled!`", del_in=5)
+            await message.edit("`Processo Cancelado!`", del_in=5)
         else:
             await message.delete()
             dl_loc = os.path.join(Config.DOWN_PATH, os.path.basename(dl_loc))
@@ -118,7 +118,7 @@ async def uploadtotg(message: Message):
             while not downloader.isFinished():
                 if message.process_is_canceled:
                     downloader.stop()
-                    raise Exception('Process Canceled!')
+                    raise Exception('Processo Cancelado!')
                 total_length = downloader.filesize if downloader.filesize else 0
                 downloaded = downloader.get_dl_size()
                 percentage = downloader.get_progress() * 100
@@ -398,7 +398,7 @@ async def finalize(message: Message, msg: Message, start_t):
     await CHANNEL.fwd_msg(msg)
     await message.client.send_chat_action(message.chat.id, "cancel")
     if message.process_is_canceled:
-        await message.edit("`Process Canceled!`", del_in=5)
+        await message.edit("`Processo Cancelado!`", del_in=5)
     else:
         end_t = datetime.now()
         m_s = (end_t - start_t).seconds

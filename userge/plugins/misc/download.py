@@ -36,7 +36,7 @@ async def down_load_media(message: Message):
             progress_args=(message, "trying to download")
         )
         if message.process_is_canceled:
-            await message.edit("`Process Canceled!`", del_in=5)
+            await message.edit("`Processo Cancelado!`", del_in=5)
         else:
             dl_loc = os.path.join(Config.DOWN_PATH, os.path.basename(dl_loc))
             end_t = datetime.now()
@@ -58,7 +58,7 @@ async def down_load_media(message: Message):
             while not downloader.isFinished():
                 if message.process_is_canceled:
                     downloader.stop()
-                    raise Exception('Process Canceled!')
+                    raise Exception('Processo Cancelado!')
                 total_length = downloader.filesize if downloader.filesize else 0
                 downloaded = downloader.get_dl_size()
                 percentage = downloader.get_progress() * 100
