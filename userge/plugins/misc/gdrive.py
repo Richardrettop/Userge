@@ -52,34 +52,34 @@ _SAVED_SETTINGS = get_collection("CONFIGS")
 
 async def _init() -> None:
     global _CREDS  # pylint: disable=global-statement
-    _LOG.debug("Setting GDrive DBase...")
+    _LOG.debug("Configurando GDrive DBase...")
     result = await _SAVED_SETTINGS.find_one({'_id': 'GDRIVE'}, {'creds': 1})
     _CREDS = pickle.loads(result['creds']) if result else None  # nosec
 
 
 async def _set_creds(creds: object) -> str:
     global _CREDS  # pylint: disable=global-statement
-    _LOG.info("Setting Creds...")
+    _LOG.info("Configurando credenciais...")
     _CREDS = creds
     result = await _SAVED_SETTINGS.update_one(
         {'_id': 'GDRIVE'}, {"$set": {'creds': pickle.dumps(creds)}}, upsert=True)
     if result.upserted_id:
-        return "`Creds Added`"
-    return "`Creds Updated`"
+        return "`Credencias adicionadas`"
+    return "`Credencias atualizadas`"
 
 
 async def _clear_creds() -> str:
     global _CREDS  # pylint: disable=global-statement
     _CREDS = None
-    _LOG.info("Clearing Creds...")
+    _LOG.info("Apagando credenciais...")
     if await _SAVED_SETTINGS.find_one_and_delete({'_id': 'GDRIVE'}):
-        return "`Creds Cleared`"
-    return "`Creds Not Found`"
+        return "`Credenciais apagadas`"
+    return "`Credenciais não encontradas`"
 
 
 async def _refresh_creds() -> None:
     try:
-        _LOG.debug("Refreshing Creds...")
+        _LOG.debug("Atualizando credenciais...")
         _CREDS.refresh(Http())
     except HttpAccessTokenRefreshError as h_e:
         _LOG.exception(h_e)
@@ -437,9 +437,9 @@ class _GDrive:
             body=body, fileId=file_id, supportsTeamDrives=True).execute()
         percentage = (self._completed / self._list) * 100
         tmp = \
-            "__Copying Files In GDrive...__\n" + \
+            "__Copiando arquivos no GDrive...__\n" + \
             "```[{}{}]({}%)```\n" + \
-            "**Completed** : `{}/{}`"
+            "**Concluído** : `{}/{}`"
         self._progress = tmp.format(
             "".join((Config.FINISHED_PROGRESS_STR
                      for i in range(math.floor(percentage / 5)))),
@@ -450,7 +450,7 @@ class _GDrive:
             self._list)
         self._completed += 1
         _LOG.info(
-            "Copied Google-Drive File => Name: %s ID: %s", drive_file['name'], drive_file['id'])
+            "Arquivo copiado do Google-Drive => Nome: %s ID: %s", drive_file['name'], drive_file['id'])
         return drive_file['id']
 
     def _copy_dir(self, file_id: str, parent_id: str) -> str:
@@ -500,7 +500,7 @@ class _GDrive:
         file_name = file_.get("name")
         if not Config.G_DRIVE_IS_TD:
             self._set_permission(file_id)
-        _LOG.info("Created Google-Drive Folder => Name: %s ID: %s ", file_name, file_id)
+        _LOG.info("Criada a pasta do Google Drive => Nome: %s ID: %s ", file_name, file_id)
         return G_DRIVE_FOLDER_LINK.format(file_id, file_name)
 
     @pool.run_in_thread
@@ -512,20 +512,20 @@ class _GDrive:
                                                   removeParents=previous_parents,
                                                   fields="parents",
                                                   supportsTeamDrives=True).execute()
-        _LOG.info("Moved file : %s => "
-                  f"from : %s to : {drive_file['parents']} in Google-Drive",
+        _LOG.info("Movendo arquivo : %s => "
+                  f"de : %s para : {drive_file['parents']} em Google-Drive",
                   file_id, previous_parents)
         return self._get_output(file_id)
 
     @pool.run_in_thread
     def _delete(self, file_id: str) -> None:
         self._service.files().delete(fileId=file_id, supportsTeamDrives=True).execute()
-        _LOG.info("Deleted Google-Drive File : %s", file_id)
+        _LOG.info("Deletando arquivo do Google-Drive : %s", file_id)
 
     @pool.run_in_thread
     def _empty_trash(self) -> None:
         self._service.files().emptyTrash().execute()
-        _LOG.info("Empty Google-Drive Trash")
+        _LOG.info("Esvaziar a lixeira do Google Drive")
 
     @pool.run_in_thread
     def _get(self, file_id: str) -> str:
@@ -534,7 +534,7 @@ class _GDrive:
         drive_file['size'] = humanbytes(int(drive_file.get('size', 0)))
         drive_file['quotaBytesUsed'] = humanbytes(int(drive_file.get('quotaBytesUsed', 0)))
         drive_file = dumps(drive_file, sort_keys=True, indent=4)
-        _LOG.info("Getting Google-Drive File Details => %s", drive_file)
+        _LOG.info("Obtendo detalhes do arquivo do Google-Drive => %s", drive_file)
         return drive_file
 
     @pool.run_in_thread
@@ -548,7 +548,7 @@ class _GDrive:
                                                    permissionId=perm_id).execute()
             all_perms[perm_id] = perm
         all_perms = dumps(all_perms, sort_keys=True, indent=4)
-        _LOG.info("All Permissions: %s for Google-Drive File : %s", all_perms, file_id)
+        _LOG.info("Todas as permissões: %s para arquivo do Google-Drive : %s", all_perms, file_id)
         return all_perms
 
     @pool.run_in_thread
