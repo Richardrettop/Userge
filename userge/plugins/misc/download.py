@@ -21,19 +21,19 @@ LOGGER = userge.getLogger(__name__)
 
 
 @userge.on_cmd("download", about={
-    'header': "Download files to server",
+    'header': "Baixar arquivos para o servidor",
     'usage': "{tr}download [url | reply to telegram media]",
     'examples': "{tr}download https://speed.hetzner.de/100MB.bin | testing upload.bin"},
     check_downpath=True)
 async def down_load_media(message: Message):
-    await message.edit("`Trying to Download...`")
+    await message.edit("`Tentando fazer download...`")
     if message.reply_to_message and message.reply_to_message.media:
         start_t = datetime.now()
         dl_loc = await message.client.download_media(
             message=message.reply_to_message,
             file_name=Config.DOWN_PATH,
             progress=progress,
-            progress_args=(message, "trying to download")
+            progress_args=(message, "tentando baixar")
         )
         if message.process_is_canceled:
             await message.edit("`Processo Cancelado!`", del_in=5)
@@ -41,7 +41,7 @@ async def down_load_media(message: Message):
             dl_loc = os.path.join(Config.DOWN_PATH, os.path.basename(dl_loc))
             end_t = datetime.now()
             m_s = (end_t - start_t).seconds
-            await message.edit(f"Downloaded to `{dl_loc}` in {m_s} seconds")
+            await message.edit(f"Baixado para `{dl_loc}` em {m_s} segundos")
     elif message.input_str:
         start_t = datetime.now()
         url = message.input_str
@@ -67,15 +67,15 @@ async def down_load_media(message: Message):
                 progress_str = \
                     "__{}__\n" + \
                     "```[{}{}]```\n" + \
-                    "**Progress** : `{}%`\n" + \
+                    "**Progresso** : `{}%`\n" + \
                     "**URL** : `{}`\n" + \
-                    "**FILENAME** : `{}`\n" + \
-                    "**Completed** : `{}`\n" + \
+                    "**NOME** : `{}`\n" + \
+                    "**Concluído** : `{}`\n" + \
                     "**Total** : `{}`\n" + \
-                    "**Speed** : `{}`\n" + \
+                    "**Velocidade** : `{}`\n" + \
                     "**ETA** : `{}`"
                 progress_str = progress_str.format(
-                    "trying to download",
+                    "tentando baixar",
                     ''.join((Config.FINISHED_PROGRESS_STR
                              for i in range(math.floor(percentage / 5)))),
                     ''.join((Config.UNFINISHED_PROGRESS_STR
@@ -97,6 +97,6 @@ async def down_load_media(message: Message):
         else:
             end_t = datetime.now()
             m_s = (end_t - start_t).seconds
-            await message.edit(f"Downloaded to `{download_file_path}` in {m_s} seconds")
+            await message.edit(f"Baixado para `{download_file_path}` em {m_s} segundos")
     else:
-        await message.edit("Please read `.help download`", del_in=5)
+        await message.edit("Por favor leia `.help download`", del_in=5)
