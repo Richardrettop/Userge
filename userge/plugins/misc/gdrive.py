@@ -95,7 +95,7 @@ def creds_dec(func):
             await _refresh_creds()
             await func(self)
         else:
-            await self._message.edit("Please run `.gsetup` first", del_in=5)
+            await self._message.edit("Por favor envie `.gsetup` antes", del_in=5)
     return wrapper
 
 
@@ -163,20 +163,20 @@ class _GDrive:
                 break
         del results
         if not msg:
-            return "`Not Found!`"
+            return "`Não encontrado!`"
         if parent_id and not force:
-            out = f"**List GDrive Folder** : `{parent_id}`\n"
+            out = f"**Listar pasta GDrive** : `{parent_id}`\n"
         elif list_root and not force:
-            out = f"**List GDrive Root Folder** : `{self._parent_id}`\n"
+            out = f"**Listar pasta raiz do GDrive** : `{self._parent_id}`\n"
         else:
-            out = f"**GDrive Search Query** : `{search_query}`\n"
-        return out + f"**Limit** : `{limit}`\n\n__Results__ : \n\n" + msg
+            out = f"**Consulta de pesquisa GDrive** : `{search_query}`\n"
+        return out + f"**Limite** : `{limit}`\n\n__Resultados__ : \n\n" + msg
 
     def _set_permission(self, file_id: str) -> None:
         permissions = {'role': 'reader', 'type': 'anyone'}
         self._service.permissions().create(fileId=file_id, body=permissions,
                                            supportsTeamDrives=True).execute()
-        _LOG.info("Set Permission : %s for Google-Drive File : %s", permissions, file_id)
+        _LOG.info("Definir permissão : %s para arquivo do Google-Drive : %s", permissions, file_id)
 
     def _get_file_path(self, file_id: str, file_name: str) -> str:
         tmp_path = [file_name]
@@ -208,7 +208,7 @@ class _GDrive:
                 quote(self._get_file_path(file_id, file_name)))
             if mime_type == G_DRIVE_DIR_MIME_TYPE:
                 link += '/'
-            out += f"\n👥 __[Shareable Link]({link})__"
+            out += f"\n👥 __[Link compartilhável]({link})__"
         return out
 
     def _upload_file(self, file_path: str, parent_id: str) -> str:
@@ -217,7 +217,7 @@ class _GDrive:
         mime_type = guess_type(file_path)[0] or "text/plain"
         file_name = os.path.basename(file_path)
         file_size = os.path.getsize(file_path)
-        body = {"name": file_name, "mimeType": mime_type, "description": "Uploaded using Userge"}
+        body = {"name": file_name, "mimeType": mime_type, "description": "Carregado usando Userge"}
         if parent_id:
             body["parents"] = [parent_id]
         if file_size == 0:
@@ -244,13 +244,13 @@ class _GDrive:
                     speed = round(uploaded / diff, 2)
                     eta = round((f_size - uploaded) / speed)
                     tmp = \
-                        "__Uploading to GDrive...__\n" + \
+                        "__Enviando para GDrive...__\n" + \
                         "```[{}{}]({}%)```\n" + \
-                        "**File Name** : `{}`\n" + \
-                        "**File Size** : `{}`\n" + \
-                        "**Uploaded** : `{}`\n" + \
-                        "**Completed** : `{}/{}`\n" + \
-                        "**Speed** : `{}/s`\n" + \
+                        "**Nome** : `{}`\n" + \
+                        "**Tamanho** : `{}`\n" + \
+                        "**Carregado** : `{}`\n" + \
+                        "**Concluído** : `{}/{}`\n" + \
+                        "**Velocidade** : `{}/s`\n" + \
                         "**ETA** : `{}`"
                     self._progress = tmp.format(
                         "".join((Config.FINISHED_PROGRESS_STR
@@ -270,7 +270,7 @@ class _GDrive:
             self._set_permission(file_id)
         self._completed += 1
         _LOG.info(
-            "Created Google-Drive File => Name: %s ID: %s Size: %s", file_name, file_id, file_size)
+            "Arquivo Google-Drive criado => Nome: %s ID: %s Tamanho: %s", file_name, file_id, file_size)
         return file_id
 
     def _create_drive_dir(self, dir_name: str, parent_id: str) -> str:
@@ -285,7 +285,7 @@ class _GDrive:
         if not Config.G_DRIVE_IS_TD:
             self._set_permission(file_id)
         self._completed += 1
-        _LOG.info("Created Google-Drive Folder => Name: %s ID: %s ", file_name, file_id)
+        _LOG.info("Pasta Google-Drive criada => Nome: %s ID: %s ", file_name, file_id)
         return file_id
 
     def _upload_dir(self, input_directory: str, parent_id: str) -> str:
@@ -319,7 +319,7 @@ class _GDrive:
             _LOG.exception(h_e)
             self._output = h_e
         except ProcessCanceled:
-            self._output = "`Process Canceled!`"
+            self._output = "`Processo Cancelado!`"
         finally:
             self._finish()
 
@@ -341,13 +341,13 @@ class _GDrive:
                     speed = round(downloaded / diff, 2)
                     eta = round((f_size - downloaded) / speed)
                     tmp = \
-                        "__Downloading From GDrive...__\n" + \
+                        "__Baixando do GDrive...__\n" + \
                         "```[{}{}]({}%)```\n" + \
-                        "**File Name** : `{}`\n" + \
-                        "**File Size** : `{}`\n" + \
-                        "**Downloaded** : `{}`\n" + \
-                        "**Completed** : `{}/{}`\n" + \
-                        "**Speed** : `{}/s`\n" + \
+                        "**Nome** : `{}`\n" + \
+                        "**Tamanho** : `{}`\n" + \
+                        "**Baixado** : `{}`\n" + \
+                        "**Concluído** : `{}/{}`\n" + \
+                        "**Velocidade** : `{}/s`\n" + \
                         "**ETA** : `{}`"
                     self._progress = tmp.format(
                         "".join((Config.FINISHED_PROGRESS_STR
@@ -364,7 +364,7 @@ class _GDrive:
                         time_formatter(eta))
         self._completed += 1
         _LOG.info(
-            "Downloaded Google-Drive File => Name: %s ID: %s", name, kwargs['id'])
+            "Arquivo do Google Drive baixado => Nome: %s ID: %s", name, kwargs['id'])
 
     def _list_drive_dir(self, file_id: str) -> list:
         query = f"'{file_id}' in parents and (name contains '*')"
@@ -391,7 +391,7 @@ class _GDrive:
         path = os.path.join(current_path, folder_name)
         if not os.path.exists(path):
             os.mkdir(path)
-        _LOG.info("Created Folder => Name: %s", folder_name)
+        _LOG.info("Pasta criada => Nome: %s", folder_name)
         self._completed += 1
         return path
 
@@ -423,7 +423,7 @@ class _GDrive:
             _LOG.exception(h_e)
             self._output = h_e
         except ProcessCanceled:
-            self._output = "`Process Canceled!`"
+            self._output = "`Processo Cancelado!`"
         finally:
             self._finish()
 
@@ -486,7 +486,7 @@ class _GDrive:
             _LOG.exception(h_e)
             self._output = h_e
         except ProcessCanceled:
-            self._output = "`Process Canceled!`"
+            self._output = "`Processo Cancelado!`"
         finally:
             self._finish()
 
@@ -746,7 +746,7 @@ class Worker(_GDrive):
                 progress_args=(self._message, "trying to download")
             )
             if self._message.process_is_canceled:
-                await self._message.edit("`Process Canceled!`", del_in=5)
+                await self._message.edit("`Processo Cancelado!`", del_in=5)
                 return
             dl_loc = os.path.join(Config.DOWN_PATH, os.path.basename(dl_loc))
         elif is_url:
@@ -763,7 +763,7 @@ class Worker(_GDrive):
                 while not downloader.isFinished():
                     if self._message.process_is_canceled:
                         downloader.stop()
-                        raise Exception('Process Canceled!')
+                        raise Exception('Processo Cancelado!')
                     total_length = downloader.filesize if downloader.filesize else 0
                     downloaded = downloader.get_dl_size()
                     percentage = downloader.get_progress() * 100
@@ -829,7 +829,7 @@ class Worker(_GDrive):
         if isinstance(self._output, HttpError):
             out = f"**ERROR** : `{self._output._get_reason()}`"  # pylint: disable=protected-access
         elif self._output is not None and not self._is_canceled:
-            out = f"**Uploaded Successfully** __in {m_s} seconds__\n\n{self._output}"
+            out = f"**Carregado com sucesso** __em {m_s} segundos__\n\n{self._output}"
         elif self._output is not None and self._is_canceled:
             out = self._output
         else:

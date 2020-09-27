@@ -19,25 +19,24 @@ CHANNEL = userge.getCLogger(__name__)
 
 
 @userge.on_cmd("update", about={
-    'header': "Check Updates or Update Userge",
+    'header': "Verificar atualizações ou mesclar atualizações",
     'flags': {
         '-pull': "pull updates",
         '-push': "push updates to heroku",
         '-master': "select master branch",
         '-beta': "select beta branch"},
-    'usage': "{tr}update : check updates from master branch\n"
-             "{tr}update -[branch_name] : check updates from any branch\n"
-             "add -pull if you want to pull updates\n"
-             "add -push if you want to push updates to heroku",
-    'examples': "{tr}update -alpha -pull -push"}, del_pre=True, allow_channels=False)
+    'usage': "{tr}update : verificar atualizações de master branch\n"
+             "{tr}update -[branch_name] : verificar atualizações de qualquer branch\n"
+             "add -pull se você quiser obter atualizações\n"
+             "add -push se você quiser enviar atualizações para o heroku",
+    'examples': "{tr}update -master -pull -push"}, del_pre=True, allow_channels=False)
 async def check_update(message: Message):
     """ check or do updates """
-    await message.edit("`Checking for updates, please wait....`")
+    await message.edit("`Verificando atualizações, por favor aguarde....`")
     flags = list(message.flags)
     pull_from_repo = False
     push_to_heroku = False
     branch = "master"
-    dev_branch = "alpha"
     if "pull" in flags:
         pull_from_repo = True
         flags.remove("pull")
@@ -49,13 +48,14 @@ async def check_update(message: Message):
         flags.remove("push")
     if len(flags) == 1:
         branch = flags[0]
+        dev_branch = "alpha"
         if branch == dev_branch:
-            await message.err('Can\'t update to unstable [alpha] branch. '
-                              'Please use other branches instead !')
+            await message.err('Não é possivel atualizar para instável [alpha] branch. '
+                              'Por favor, use outra branch ao invés !')
             return
     repo = Repo()
     if branch not in repo.branches:
-        await message.err(f'invalid branch name : {branch}')
+        await message.err(f'nome de branch inválido : {branch}')
         return
     try:
         out = _get_updates(repo, branch)
@@ -64,32 +64,32 @@ async def check_update(message: Message):
         return
     if not (pull_from_repo or push_to_heroku):
         if out:
-            change_log = f'**New UPDATE available for [{branch}]:\n\n📄 CHANGELOG 📄**\n\n'
+            change_log = f'**Novo UPDATE disponível para [{branch}]:\n\n📄 CHANGELOG 📄**\n\n'
             await message.edit_or_send_as_file(change_log + out, disable_web_page_preview=True)
         else:
-            await message.edit(f'**Userge is up-to-date with [{branch}]**', del_in=5)
+            await message.edit(f'**Userge está atualizado com [{branch}]**', del_in=5)
         return
     if pull_from_repo:
         if out:
-            await message.edit(f'`New update found for [{branch}], Now pulling...`')
+            await message.edit(f'`Nova atualização encontrada para [{branch}], Agora puxando...`')
             await _pull_from_repo(repo, branch)
-            await CHANNEL.log(f"**PULLED update from [{branch}]:\n\n📄 CHANGELOG 📄**\n\n{out}")
+            await CHANNEL.log(f"**PULLED atualização de [{branch}]:\n\n📄 CHANGELOG 📄**\n\n{out}")
             if not push_to_heroku:
-                await message.edit('**Userge Successfully Updated!**\n'
-                                   '`Now restarting... Wait for a while!`', del_in=3)
+                await message.edit('**Userge atualizado com sucesso!**\n'
+                                   '`Agora reiniciando ... Aguarde um pouco!`', del_in=3)
                 asyncio.get_event_loop().create_task(userge.restart(True))
         elif push_to_heroku:
             await _pull_from_repo(repo, branch)
         else:
             active = repo.active_branch.name
             if active == branch:
-                await message.err(f"already in [{branch}]!")
+                await message.err(f"Já está em [{branch}]!")
                 return
             await message.edit(
-                f'`Moving HEAD from [{active}] >>> [{branch}] ...`', parse_mode='md')
+                f'`Movendo HEAD de [{active}] >>> [{branch}] ...`', parse_mode='md')
             await _pull_from_repo(repo, branch)
-            await CHANNEL.log(f"`Moved HEAD from [{active}] >>> [{branch}] !`")
-            await message.edit('`Now restarting... Wait for a while!`', del_in=3)
+            await CHANNEL.log(f"`Moveu HEAD de [{active}] >>> [{branch}] !`")
+            await message.edit('`Agora reiniciando ... Aguarde um pouco!`', del_in=3)
             asyncio.get_event_loop().create_task(userge.restart())
     if push_to_heroku:
         await _push_to_heroku(message, repo, branch)
@@ -113,17 +113,17 @@ async def _pull_from_repo(repo: Repo, branch: str) -> None:
 
 async def _push_to_heroku(msg: Message, repo: Repo, branch: str) -> None:
     sent = await msg.edit(
-        f'`Now pushing updates from [{branch}] to heroku...\n'
-        'this will take upto 5 min`\n\n'
-        f'* **Restart** after 5 min using `{Config.CMD_TRIGGER}restart -h`\n\n'
-        '* After restarted successfully, check updates again :)')
+        f'`Agora empurrando atualizações de [{branch}] para o heroku...\n'
+        'isso pode demorar mais de 5 minutos`\n\n'
+        f'* **Reinicie** após 5 min usando `{Config.CMD_TRIGGER}restart -h`\n\n'
+        '* Depois de reiniciado com sucesso, verifique as atualizações novamente :)')
     try:
         await _heroku_helper(sent, repo, branch)
     except GitCommandError as g_e:
         LOG.exception(g_e)
-        await sent.err(f"{g_e}, {Config.CMD_TRIGGER}restart -h and try again!")
+        await sent.err(f"{g_e}, {Config.CMD_TRIGGER}restart -h e tente novamente!")
     else:
-        await sent.edit(f"**HEROKU APP : {Config.HEROKU_APP.name} is up-to-date with [{branch}]**")
+        await sent.edit(f"**HEROKU APP : {Config.HEROKU_APP.name} está em dia com [{branch}]**")
 
 
 @pool.run_in_thread
