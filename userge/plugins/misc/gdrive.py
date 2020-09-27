@@ -208,7 +208,7 @@ class _GDrive:
                 quote(self._get_file_path(file_id, file_name)))
             if mime_type == G_DRIVE_DIR_MIME_TYPE:
                 link += '/'
-            out += f"\n👥 __[Shareable Link]({link})__"
+            out += f"\n👥 __[Link compartilhável]({link})__"
         return out
 
     def _upload_file(self, file_path: str, parent_id: str) -> str:
@@ -217,7 +217,7 @@ class _GDrive:
         mime_type = guess_type(file_path)[0] or "text/plain"
         file_name = os.path.basename(file_path)
         file_size = os.path.getsize(file_path)
-        body = {"name": file_name, "mimeType": mime_type, "description": "Uploaded using Userge"}
+        body = {"name": file_name, "mimeType": mime_type, "description": "Carregado usando Userge"}
         if parent_id:
             body["parents"] = [parent_id]
         if file_size == 0:
@@ -246,11 +246,11 @@ class _GDrive:
                     tmp = \
                         "__Uploading to GDrive...__\n" + \
                         "```[{}{}]({}%)```\n" + \
-                        "**File Name** : `{}`\n" + \
-                        "**File Size** : `{}`\n" + \
-                        "**Uploaded** : `{}`\n" + \
-                        "**Completed** : `{}/{}`\n" + \
-                        "**Speed** : `{}/s`\n" + \
+                        "**Nome** : `{}`\n" + \
+                        "**Tamanho** : `{}`\n" + \
+                        "**Carregado** : `{}`\n" + \
+                        "**Concluído** : `{}/{}`\n" + \
+                        "**Velocidade** : `{}/s`\n" + \
                         "**ETA** : `{}`"
                     self._progress = tmp.format(
                         "".join((Config.FINISHED_PROGRESS_STR
@@ -829,7 +829,7 @@ class Worker(_GDrive):
         if isinstance(self._output, HttpError):
             out = f"**ERROR** : `{self._output._get_reason()}`"  # pylint: disable=protected-access
         elif self._output is not None and not self._is_canceled:
-            out = f"**Uploaded Successfully** __in {m_s} seconds__\n\n{self._output}"
+            out = f"**Carregado com sucesso** __em {m_s} segundos__\n\n{self._output}"
         elif self._output is not None and self._is_canceled:
             out = self._output
         else:
