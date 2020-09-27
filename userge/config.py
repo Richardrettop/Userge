@@ -91,7 +91,7 @@ def get_version() -> str:
     if "/xmtscf/userge" in Config.UPSTREAM_REPO.lower():
         diff = list(_REPO.iter_commits(f'v{ver}..HEAD'))
         if diff:
-            return f"{ver}-patch.{len(diff)}"
+            return f"{ver}-XMTSCF.{len(diff)}"
     else:
         diff = list(_REPO.iter_commits(f'{Config.UPSTREAM_REMOTE}/master..HEAD'))
         if diff:
