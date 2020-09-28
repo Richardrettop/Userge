@@ -1,6 +1,3 @@
-<p align="center">
-    <a href="https://github.com/xmtscf/Userge">
-        <img src="resources/userge.png" alt="Userge">
     </a>
     <br>
     <b>Pluggable Telegram UserBot</b>
