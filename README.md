@@ -1,4 +1,8 @@
-</a>
+<p align="center">
+    <a href="https://github.com/xmtscf/Userge">
+        <img src="resources/userge.png" alt="Userge">
+    </a>
+    <br>
     <b>Pluggable Telegram UserBot</b>
     <br>
     <a href="https://github.com/xmtscf/Userge#inspiration-">Inspiration</a>
@@ -16,7 +20,7 @@
 
 # Userge 🔥
 
-![Python Version](https://img.shields.io/badge/python-3.8-lightgrey)  ![Stars](https://img.shields.io/github/stars/xmtscf/userge) ![Forks](https://img.shields.io/github/forks/xmtscf/userge) ![Issues Open](https://img.shields.io/github/issues/xmtscf/userge) ![Issues Closed](https://img.shields.io/github/issues-closed/xmtscf/userge) ![PR Open](https://img.shields.io/github/issues-pr/xmtscf/userge) ![PR Closed](https://img.shields.io/github/issues-pr-closed/xmtscf/userge) ![Contributors](https://img.shields.io/github/contributors/xmtscf/userge) ![Repo Size](https://img.shields.io/github/repo-size/xmtscf/userge) ![License](https://img.shields.io/github/license/xmtscf/userge) ![Plugins Repo!](https://img.shields.io/badge/Plugins%20Repo-!-orange)](https://github.com/xmtscf/Userge-Plugins) ![Join Channel!](https://img.shields.io/badge/Join%20Channel-!-red)](https://t.me/theUserge) ![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/xmtscf/userge/?ref=repository-badge)
+[![Build Status](https://travis-ci.com/xmtscf/userge.svg?branch=dev)](https://travis-ci.com/xmtscf/userge) ![Python Version](https://img.shields.io/badge/python-3.8-lightgrey) ![Release](https://img.shields.io/github/v/release/xmtscf/userge) ![Stars](https://img.shields.io/github/stars/xmtscf/userge) ![Forks](https://img.shields.io/github/forks/xmtscf/userge) ![Issues Open](https://img.shields.io/github/issues/xmtscf/userge) ![Issues Closed](https://img.shields.io/github/issues-closed/xmtscf/userge) ![PR Open](https://img.shields.io/github/issues-pr/xmtscf/userge) ![PR Closed](https://img.shields.io/github/issues-pr-closed/xmtscf/userge) ![Contributors](https://img.shields.io/github/contributors/xmtscf/userge) ![Repo Size](https://img.shields.io/github/repo-size/xmtscf/userge) ![License](https://img.shields.io/github/license/xmtscf/userge) ![Commit Activity](https://img.shields.io/github/commit-activity/m/xmtscf/userge) [![Plugins Repo!](https://img.shields.io/badge/Plugins%20Repo-!-orange)](https://github.com/xmtscf/Userge-Plugins) [![Join Channel!](https://img.shields.io/badge/Join%20Channel-!-red)](https://t.me/theUserge) [![DeepSource](https://static.deepsource.io/deepsource-badge-light-mini.svg)](https://deepsource.io/gh/xmtscf/userge/?ref=repository-badge)
 
 > **Userge** is a Powerful , _Pluggable_ Telegram UserBot written in _Python_ using [Pyrogram](https://github.com/pyrogram/pyrogram).
 
