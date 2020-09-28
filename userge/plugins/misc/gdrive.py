@@ -692,7 +692,7 @@ class Worker(_GDrive):
     async def make_folder(self) -> None:
         """ Make folder in GDrive parent path """
         if not self._parent_id:
-            await self._message.edit("First set parent path by `.gset`", del_in=5)
+            await self._message.edit("Primeiro defina o caminho pai por `.gset`", del_in=5)
             return
         if not self._message.input_str:
             await self._message.edit("Please give name for folder", del_in=5)
@@ -711,7 +711,7 @@ class Worker(_GDrive):
         """ List files in GDrive folder or root """
         file_id, file_type = self._get_file_id(filter_str=True)
         if not file_id and not self._parent_id:
-            await self._message.edit("First set parent path by `.gset`", del_in=5)
+            await self._message.edit("Primeiro defina o caminho pai por `.gset`", del_in=5)
             return
         if file_id and file_type != "folder":
             await self._message.err("Please send me a folder link")
@@ -735,7 +735,7 @@ class Worker(_GDrive):
             r"(?:https?|ftp)://[^\|\s]+\.[^\|\s]+", self._message.input_str)
         dl_loc = None
         if replied and replied.media:
-            await self._message.edit("`Downloading From TG...`")
+            await self._message.edit("`Baixando do TG...`")
             file_name = Config.DOWN_PATH
             if self._message.input_str:
                 file_name = os.path.join(Config.DOWN_PATH, self._message.input_str)
@@ -743,14 +743,14 @@ class Worker(_GDrive):
                 message=replied,
                 file_name=file_name,
                 progress=progress,
-                progress_args=(self._message, "trying to download")
+                progress_args=(self._message, "tentando baixar")
             )
             if self._message.process_is_canceled:
                 await self._message.edit("`Processo Cancelado!`", del_in=5)
                 return
             dl_loc = os.path.join(Config.DOWN_PATH, os.path.basename(dl_loc))
         elif is_url:
-            await self._message.edit("`Downloading From URL...`")
+            await self._message.edit("`Baixando do URL...`")
             url = is_url[0]
             file_name = unquote_plus(os.path.basename(url))
             if "|" in self._message.input_str:
@@ -772,15 +772,15 @@ class Worker(_GDrive):
                     progress_str = \
                         "__{}__\n" + \
                         "```[{}{}]```\n" + \
-                        "**Progress** : `{}%`\n" + \
+                        "**Progresso** : `{}%`\n" + \
                         "**URL** : `{}`\n" + \
-                        "**FILENAME** : `{}`\n" + \
-                        "**Completed** : `{}`\n" + \
+                        "**NOME** : `{}`\n" + \
+                        "**Concluído** : `{}`\n" + \
                         "**Total** : `{}`\n" + \
-                        "**Speed** : `{}`\n" + \
+                        "**Velocidade** : `{}`\n" + \
                         "**ETA** : `{}`"
                     progress_str = progress_str.format(
-                        "trying to download",
+                        "tentando baixar",
                         ''.join((Config.FINISHED_PROGRESS_STR
                                  for i in range(math.floor(percentage / 5)))),
                         ''.join((Config.UNFINISHED_PROGRESS_STR
@@ -803,14 +803,14 @@ class Worker(_GDrive):
                 return
         file_path = dl_loc if dl_loc else self._message.input_str
         if not os.path.exists(file_path):
-            await self._message.err("invalid file path provided?")
+            await self._message.err("caminho de arquivo inválido fornecido?")
             return
         if "|" in file_path:
             file_path, file_name = file_path.split("|")
             new_path = os.path.join(os.path.dirname(file_path.strip()), file_name.strip())
             os.rename(file_path.strip(), new_path)
             file_path = new_path
-        await self._message.try_to_edit("`Loading GDrive Upload...`")
+        await self._message.try_to_edit("`Carregando GDrive Upload...`")
         pool.submit_thread(self._upload, file_path)
         start_t = datetime.now()
         count = 0
@@ -833,13 +833,13 @@ class Worker(_GDrive):
         elif self._output is not None and self._is_canceled:
             out = self._output
         else:
-            out = "`failed to upload.. check logs?`"
+            out = "`falha ao carregar .. verificar logs?`"
         await self._message.edit(out, disable_web_page_preview=True, log=__name__)
 
     @creds_dec
     async def download(self) -> None:
         """ Download file/folder from GDrive """
-        await self._message.try_to_edit("`Loading GDrive Download...`")
+        await self._message.try_to_edit("`Carregando download do GDrive...`")
         file_id, _ = self._get_file_id()
         pool.submit_thread(self._download, file_id)
         start_t = datetime.now()
@@ -857,20 +857,20 @@ class Worker(_GDrive):
         if isinstance(self._output, HttpError):
             out = f"**ERROR** : `{self._output._get_reason()}`"  # pylint: disable=protected-access
         elif self._output is not None and not self._is_canceled:
-            out = f"**Downloaded Successfully** __in {m_s} seconds__\n\n`{self._output}`"
+            out = f"**Download concluído com sucesso** __in {m_s} segundos__\n\n`{self._output}`"
         elif self._output is not None and self._is_canceled:
             out = self._output
         else:
-            out = "`failed to download.. check logs?`"
+            out = "`Falha ao baixar .. verificar logs?`"
         await self._message.edit(out, disable_web_page_preview=True, log=__name__)
 
     @creds_dec
     async def copy(self) -> None:
         """ Copy file/folder in GDrive """
         if not self._parent_id:
-            await self._message.edit("First set parent path by `.gset`", del_in=5)
+            await self._message.edit("Primeiro defina o caminho pai por `.gset`", del_in=5)
             return
-        await self._message.try_to_edit("`Loading GDrive Copy...`")
+        await self._message.try_to_edit("`Carregando cópia do GDrive...`")
         file_id, _ = self._get_file_id()
         pool.submit_thread(self._copy, file_id)
         start_t = datetime.now()
@@ -888,20 +888,20 @@ class Worker(_GDrive):
         if isinstance(self._output, HttpError):
             out = f"**ERROR** : `{self._output._get_reason()}`"  # pylint: disable=protected-access
         elif self._output is not None and not self._is_canceled:
-            out = f"**Copied Successfully** __in {m_s} seconds__\n\n{self._output}"
+            out = f"**Copiado com sucesso** __in {m_s} segundos__\n\n{self._output}"
         elif self._output is not None and self._is_canceled:
             out = self._output
         else:
-            out = "`failed to copy.. check logs?`"
+            out = "`Falha ao copiar .. verificar logs?`"
         await self._message.edit(out, disable_web_page_preview=True, log=__name__)
 
     @creds_dec
     async def move(self) -> None:
         """ Move file/folder in GDrive """
         if not self._parent_id:
-            await self._message.edit("First set parent path by `.gset`", del_in=5)
+            await self._message.edit("Primeiro defina o caminho pai por `.gset`", del_in=5)
             return
-        await self._message.edit("`Loading GDrive Move...`")
+        await self._message.edit("`Carregando GDrive Move...`")
         file_id, _ = self._get_file_id()
         try:
             link = await self._move(file_id)
@@ -910,12 +910,12 @@ class Worker(_GDrive):
             await self._message.err(h_e._get_reason())  # pylint: disable=protected-access
         else:
             await self._message.edit(
-                f"`{file_id}` **Moved Successfully**\n\n{link}", log=__name__)
+                f"`{file_id}` **Movido com sucesso**\n\n{link}", log=__name__)
 
     @creds_dec
     async def delete(self) -> None:
         """ Delete file/folder in GDrive """
-        await self._message.edit("`Loading GDrive Delete...`")
+        await self._message.edit("`Carregando GDrive Delete...`")
         file_id, _ = self._get_file_id()
         try:
             await self._delete(file_id)
@@ -924,12 +924,12 @@ class Worker(_GDrive):
             await self._message.err(h_e._get_reason())  # pylint: disable=protected-access
         else:
             await self._message.edit(
-                f"`{file_id}` **Deleted Successfully**", del_in=5, log=__name__)
+                f"`{file_id}` **Apagado com sucesso**", del_in=5, log=__name__)
 
     @creds_dec
     async def empty(self) -> None:
         """ Empty GDrive Trash """
-        await self._message.edit("`Loading GDrive Empty Trash...`")
+        await self._message.edit("`Carregando GDrive Empty Trash...`")
         try:
             await self._empty_trash()
         except HttpError as h_e:
@@ -937,12 +937,12 @@ class Worker(_GDrive):
             await self._message.err(h_e._get_reason())  # pylint: disable=protected-access
         else:
             await self._message.edit(
-                "`Empty the Trash Successfully`", del_in=5, log=__name__)
+                "`Lixeira limpa com Sucesso`", del_in=5, log=__name__)
 
     @creds_dec
     async def get(self) -> None:
         """ Get details for file/folder in GDrive """
-        await self._message.edit("`Loading GDrive GetDetails...`")
+        await self._message.edit("`Carregando GDrive GetDetails...`")
         file_id, _ = self._get_file_id()
         try:
             meta_data = await self._get(file_id)
@@ -950,7 +950,7 @@ class Worker(_GDrive):
             _LOG.exception(h_e)
             await self._message.err(h_e._get_reason())  # pylint: disable=protected-access
             return
-        out = f"**I Found these Details for** `{file_id}`\n\n{meta_data}"
+        out = f"**Encontrei esses detalhes para** `{file_id}`\n\n{meta_data}"
         await self._message.edit_or_send_as_file(
             out, disable_web_page_preview=True,
             caption=f"metadata for `{file_id}`")
@@ -958,7 +958,7 @@ class Worker(_GDrive):
     @creds_dec
     async def get_perms(self) -> None:
         """ Get all Permissions of file/folder in GDrive """
-        await self._message.edit("`Loading GDrive GetPermissions...`")
+        await self._message.edit("`Carregando GDrive GetPermissions...`")
         file_id, _ = self._get_file_id()
         try:
             out = await self._get_perms(file_id)
