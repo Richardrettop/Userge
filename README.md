@@ -1,5 +1,4 @@
 </a>
-    <br>
     <b>Pluggable Telegram UserBot</b>
     <br>
     <a href="https://github.com/xmtscf/Userge#inspiration-">Inspiration</a>
